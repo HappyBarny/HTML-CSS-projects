@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+
+<body>
+    <header class="header">
+        <a href="/" class="logo">KiChef</a>
+        <input type="checkbox" class="menu-btn" id="menu-btn">
+        <label for="menu-btn" class="menu-icon">
+            <span class="nav-icon"></span>
+        </label>
+        <ul class="menu">
+            <li><a href="#about">La nostra cucina</a></li>
+            <li><a href="#portfolio">Chi Siamo</a></li>
+            <li><a href="#contacts">Contattaci</a></li>
+        </ul>
+    </header>
+
+    <main>
+        <div class="hero">
+            <div class="image">
+                <img src="Burger.jpg" alt="hamburger buonissimo">
+            </div>
+            <div class="description">
+                <h1>I NOSTRI PIATTI DI SUCCESSO</h1>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium dignissimos officia expedita ab
+                    quam, id nemo.</p>
+                <a href="#">scoprili tutti</a>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="c">
+                <img src="antipasto.avif" alt="piatto preview">
+                <h2>Contorni</h2>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam, voluptatem alias!</p>
+                <button><a href="#">Iniziamo!</a></button>
+            </div>
+            <div class="c">
+                <img src="piatto.jpg" alt="piatto preview">
+                <h2>Primi</h2>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam, voluptatem alias!</p>
+                <button><a href="#">Iniziamo!</a></button>
+
+            </div>
+            <div class="c">
+                <img src="secondi.avif" alt="piatto preview">
+                <h2>Secondi</h2>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam, voluptatem alias!</p>
+                <button><a href="#">Iniziamo!</a></button>
+            </div>
+            <div class="c">
+                <img src="dolci.jpg" alt="piatto preview">
+                <h2>Dessert</h2>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam, voluptatem alias!</p>
+                <button><a href="#">Iniziamo!</a></button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="map">
+            <legend>DOVE SIAMO? QUI!</legend>
+            <div style="text-decoration:none; overflow:hidden;max-width:100%;width:400px;height:400px;" class="mappa">
+                <div id="gmap-canvas" style="height:100%; width:100%;max-width:100%;">
+                    <iframe style="height:100%;width:100%;border:0;" frameborder="0"
+                        src="https://www.google.com/maps/embed/v1/place?q=Via+dei+Montecatini,+Roma+RM,+Italia&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8">
+                    </iframe>
+                </div>
+                <a class="google-maps-html" href="https://www.bootstrapskins.com/themes"
+                    id="authorize-maps-data">premium bootstrap themes</a>
+                <style>
+                    #gmap-canvas img {
+                        max-height: none;
+                        max-width: none !important;
+                        background: none !important;
+                    }
+                </style>
+            </div>
+        </div>
+
+        <div class="contatti">
+            <h2>CONTATTACI</h2>
+            <div class="form">
+                <form action="#" method="get">
+                    <div class="persona">
+                        <label for="nome">nome:</label>
+                        <input type="text" placeholder="il tuo nome qui" required>
+                        <label for="cognome">cognome:</label>
+                        <input type="text" placeholder="il tuo cognome qui" required>
+                        <label for="email">email:</label>
+                        <input type="email" placeholder="la-tua@email" required>
+                        
+                    </div>
+                    <div class="messaggio">
+                        <label for="messaggio">messaggio:</label>
+                        <textarea name="messaggio" id="" cols="30" rows="10" placeholder="il tuo messaggio" required></textarea>
+                        <input type="submit" class="submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
