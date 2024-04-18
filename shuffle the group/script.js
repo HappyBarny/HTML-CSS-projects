@@ -14,12 +14,29 @@ function generate(){
     randomizzaArray(lista_partecipanti)
     gruppi = spezzaListaInGruppi(lista_partecipanti, pGruppo);
 
+    
     /*Riequilibrio i gruppi nel caso in cui uno di questi è troppo piccolo rispetto agli altri*/
-    let lunghezzaGruppi = gruppi.length - 1
-    let ultimoGruppo = gruppi[lunghezzaGruppi].length
+    let ultimoListIndex = gruppi.length - 1;
+    let partecipantiUltimoGruppo = gruppi[ultimoListIndex].length;
 
-    if(gruppi[0].length > ultimoGruppo){
-        console.log(true, gruppi[lunghezzaGruppi])
+    if((gruppi[0].length/2) + 1 > partecipantiUltimoGruppo){
+        alert(`l'ultimo gruppo essendo di ${partecipantiUltimoGruppo} persone verrà ridistribuito negli altri gruppi`);    
+        while(gruppi[ultimoListIndex].length > 0){
+            for(let i=0; i<gruppi.length; i++){
+                if(i!== ultimoListIndex){
+                    let persona = gruppi[ultimoListIndex].shift();
+                    if(persona === undefined){
+                        break;
+                    }
+                    gruppi[i].push(persona);
+                }
+            }
+        }
+        gruppi.pop();
+    } 
+
+    else{
+        console.log("false");
     }
     console.log(gruppi)
     
@@ -114,71 +131,3 @@ function strutturaFile(nome, gruppo){
 
     return json_group;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*FUNZIONA*/
-/*
-function shuffle(){
-    var ruoli = {
-        "interviewer": [],
-        "note taker": [],
-        "tester": []
-    };
-
-    randomizzaArray(gruppi[0])
-
-    n = gruppi[0].length;
-    partecipanti = gruppi[0];
-
-    console.log(ruoli)
-    for (var i = 0; i < n; i++) {
-        var ruoloIndex = i % Object.keys(ruoli).length;
-        var ruolo = Object.keys(ruoli)[ruoloIndex];
-        ruoli[ruolo].push(partecipanti[i]);
-    }
-
-    console.log(ruoli)
-
-}
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-function assegnaRuoli(gruppo, ruoli) {
-    n = gruppo.length;
-    partecipanti = gruppo;
-
-    console.log(ruoli)
-    for (var i = 0; i < n; i++) {
-        var ruoloIndex = i % Object.keys(ruoli).length;
-        var ruolo = Object.keys(ruoli)[ruoloIndex];
-        ruoli[ruolo].push(partecipanti[i]);
-    }
-
-    console.log(ruoli)
-}
-*/
