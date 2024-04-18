@@ -215,10 +215,22 @@ function creaTabellaShuffle(tabella){
     let shuffle = document.getElementById("shuffle");
     for(let i=0; i<tabella.length; i++){
         let tableHTML = `<h2>${tabella[i].nome}</h2>
-        <table border="1">
+        <table>
            <tr>
                <th>Ruolo</th>
                <th>Partecipanti</th>
+           </tr>
+           <tr>
+                <th>Interviewer</th>
+                <th>${tabella[i].ruoli['interviewer']}</th>
+           </tr>
+           <tr>
+                <th>Tester</th>
+                <th>${tabella[i].ruoli['tester']}</th>
+           </tr>
+           <tr>
+                <th>Note Taker</th>
+                <th>${tabella[i].ruoli['note taker']}</th>
            </tr>`;
     
         tableHTML += `</table>`;
