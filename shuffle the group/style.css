@@ -2,6 +2,16 @@ body{
     font-family: sans-serif;
 
 }
+
+h1{
+    font-size: 36px;
+}
+
+h2{
+    font-weight: bold;
+}
+
+
 .form{
     display: flex;
     flex-direction: column;
@@ -16,5 +26,61 @@ body{
 
     button{
         width: fit-content
+    }
+}
+
+#result{
+    table{
+        margin-bottom: 15px;
+        border: 1px solid black;
+        border-collapse: collapse;
+
+        p{
+            font-weight: bolder;
+            padding-left: 15px;
+        }
+
+        tr{
+            border-bottom: 1px solid black;
+            td{
+                padding-bottom: 15px;
+                padding-right: 25px;
+            }
+        }
+    }
+}
+
+#shuffle{
+    display: flex;
+    flex-direction: row;
+    
+    flex-wrap: wrap;
+    gap: 50px;
+    table{
+        font-family: sans-serif;
+        font-weight: normal !important;
+    
+        border-collapse: collapse;
+        
+        tr:nth-child(1){
+            th{
+                font-weight: bold;
+                background-color: white;
+            }
+        }
+        
+        th{
+            font-weight: normal;
+            text-align: left;
+            padding-right: 25px;
+            border: 1px solid black;    
+            padding: 10px 10px 10px 10px;
+        }
+
+        th:nth-child(1){
+            font-weight: bold;
+            background-color: rgb(209, 209, 209);
+        }
+    
     }
 }
