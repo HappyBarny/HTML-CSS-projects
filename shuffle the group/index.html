@@ -14,11 +14,12 @@
         <h1>IULM TEAM BUILDER</h1>
     </header>
     <div class="form">
-        <label for="partecipanti">numero partecipanti:</label>
-        <input type="text" id="partecipanti">
+        <h2>Crea velocemente i team!</h2>
+        <label for="partecipanti">Numero partecipanti:</label>
+        <input type="number" id="partecipanti" min="6" placeholder="6" required>
 
-        <label for="pGruppo">persone per gruppo:</label>
-        <input type="number" id="pGruppo">
+        <label for="pGruppo">Persone per gruppo:</label>
+        <input type="number" id="pGruppo" min="3" placeholder="3" required>
 
         <button onclick="generate()">Genera i gruppi!</button>
     </div>
