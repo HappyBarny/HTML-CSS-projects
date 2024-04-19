@@ -116,22 +116,29 @@ Funzione che mi genera i gruppi e richiama la funzione "Struttura file"
 che mi porta ad assegnare ad ogni persona un ruolo all'interno del gruppo
 */
 function shuffle(){
-    var json_file = [];
+    /*Ho trovato necessario tenere una copia del gruppo il che mi permette di fare
+    più volte lo shuffle mantenendo gli stessi gruppi*/
+    let copiaGruppi = []
+    gruppi.forEach(gruppo => {
+        let lista = []
+        for(let i=0;i<gruppo.length; i++){
+            lista.push(gruppo[i])
+        }
+        copiaGruppi.push(lista)
+    });
 
+    var json_file = [];
     /*
     In questo ciclo for assegno ad ogni persona all'interno di ogni gruppo un ruolo
     richiamando la funzione assegnaRuolo
     */
-    for(let i=0; i<gruppi.length; i++){
+    for(let i=0; i<copiaGruppi.length; i++){
         nome = "Gruppo - " + i;
-        let info = assegnaRuolo(nome, gruppi[i])
+        let info = assegnaRuolo(nome, copiaGruppi[i])
         json_file.push(info)
     }
 
-    console.log(json_file);
-
     shuffleTheTester(json_file);
-    // creaTabellaShuffle(tabella);
 }
 
 /*
@@ -227,6 +234,7 @@ function shuffleTheTester(json_file){
     }
     
     creaTabellaShuffle(gruppi);
+    return json_file
 }
 
 /*
@@ -241,6 +249,7 @@ function creaTabellaShuffle(tabella){
     let allTable = `<div class="test">
     <h2>Testa il prototipo!</h2>
     <p>Per ogni persona del gruppo è stato assegnato un ruolo. <br> I <b>tester</b> nei gruppi appartengono a gruppi diversi.</p>
+    <button onclick="shuffle()">Rimescola i ruoli!</button>
     </div>
     <div id="tabs">`;
     for(let i=0; i<tabella.length; i++){
