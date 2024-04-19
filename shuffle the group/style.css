@@ -1,11 +1,22 @@
+
 body{
     font-family: sans-serif;
-
+    margin: auto;
 }
 
-h1{
-    font-size: 36px;
-}
+header{
+    background-color: #312682;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    h1{
+        margin: 0;
+        font-size: 3em;
+        background-color: #312682;
+        color: white;
+        text-align: center;
+    }
+}   
+
 
 h2{
     font-weight: bold;
@@ -13,23 +24,42 @@ h2{
 
 
 .form{
+    margin-top: 50px;
+    margin-left: 25px;
+    margin-bottom: 50px;
+    line-height: 1.5em;
     display: flex;
     flex-direction: column;
 
     flex-wrap: wrap;
 
+    label{
+        margin-bottom: 5px;
+    }
     input{
         width: 170px;
-        margin-bottom: 10px;
-        margin-left: 5px;
+        margin-bottom: 15px;
     }
 
     button{
-        width: fit-content
+        width: fit-content;
     }
 }
 
 #result{
+
+    margin-left: 25px;
+
+    .gruppiGenerati{
+        h2{
+            font-size: 2.3em;
+        }
+        p{
+            margin-top: -15px;
+            margin-bottom: 30px;
+        }
+    }
+
     table{
         margin-bottom: 15px;
         border: 1px solid black;
@@ -50,11 +80,26 @@ h2{
     }
 }
 
-#shuffle{
+.test{
+    margin-left: 25px;
+    margin-top: 80px;
+    h2{
+        font-size: 2.3em;
+    }
+    p{
+        margin-top: -5px;
+        line-height: 1.3em;
+    }
+}
+#tabs{
+    margin-top: -50px;
+    margin-left: 25px;
+    margin-bottom: 50px;
     display: flex;
     flex-direction: row;
     
     flex-wrap: wrap;
+    margin-top: 30px;
     gap: 50px;
     table{
         font-family: sans-serif;
@@ -79,8 +124,24 @@ h2{
 
         th:nth-child(1){
             font-weight: bold;
-            background-color: rgb(209, 209, 209);
+            background-color: #cccccccb;
         }
     
     }
+}
+
+button{
+    border: 2px solid #312682;
+    color: #312682;
+    cursor: pointer;
+    font-weight: bolder;
+    width: fit-content;
+    border-radius: 15px;
+    margin-top: 5px;
+    padding: 5px 10px 5px 10px;
+}
+
+button:hover{
+    background-color: #312682;
+    color: white;
 }

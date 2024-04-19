@@ -88,13 +88,17 @@ su schermo i diversi gruppi.
 Nel file style.css trovi lo stile dato alla tabella
 */
 function generaTabella(lista) {
-    let tabellaHTML = "<h2>Gruppi</h2><table>";
-    let i = 1;
+    let tabellaHTML = `<div class="gruppiGenerati">
+    <h2>Gruppi generati!</h2>
+    <p>Ovviamente non potevano che essere tutti casuali! 😁</p>
+    </div>
+    <table>`;
+    let i = 0;
     // Itera attraverso ogni riga della lista
     lista.forEach(function(riga) {
       tabellaHTML += "<tr>";
       // Itera attraverso ogni elemento della riga
-      tabellaHTML += "<td>" + "Gruppo " + i + "</td>";
+      tabellaHTML += "<td><p>" + "Gruppo " + i + "</p></td>";
       riga.forEach(function(elemento) {
         tabellaHTML += "<td>" + elemento + "</td>";
       });
@@ -102,7 +106,7 @@ function generaTabella(lista) {
       tabellaHTML += "</tr>";
     });
     tabellaHTML += "</table>";
-    tabellaHTML += `<button onclick="shuffle()">Shuffle</button>`
+    tabellaHTML += `<button onclick="shuffle()">Time to TEST!</button>`
     return tabellaHTML;
 }
 
@@ -119,15 +123,15 @@ function shuffle(){
     richiamando la funzione assegnaRuolo
     */
     for(let i=0; i<gruppi.length; i++){
-        nome = "gruppo - " + i;
+        nome = "Gruppo - " + i;
         let info = assegnaRuolo(nome, gruppi[i])
         json_file.push(info)
     }
 
     console.log(json_file);
 
-    let tabella = shuffleTheTester(json_file);
-    creaTabellaShuffle(tabella);
+    shuffleTheTester(json_file);
+    // creaTabellaShuffle(tabella);
 }
 
 /*
@@ -194,14 +198,35 @@ function shuffleTheTester(json_file){
         testerDisponibili = testerDisponibili.concat(gruppo.ruoli['tester']);
     });
 
-    randomizzaArray(testerDisponibili);
+    console.log("tester disponibili: " , testerDisponibili)
 
-    gruppi.forEach(gruppo => {
-        let testerDisponibiliFiltrati = testerDisponibili.filter(tester => !gruppo.partecipanti.includes(tester));
-        gruppo.ruoli['tester'] = testerDisponibiliFiltrati.splice(0, gruppo.ruoli['tester'].length);
-    });
-    console.log("TESTER SCAMBIATI", gruppi);
-    return gruppi;
+    
+    /*Per numeri di gruppi pari o dispari non si può applicare lo stesso algoritmo*/
+    if(gruppi.length % 2 == 0){
+        randomizzaArray(testerDisponibili);
+        gruppi.forEach(gruppo => {
+            for(let i=0; i<testerDisponibili.length; i++){
+                if(gruppo.ruoli[`tester`] != testerDisponibili[i]){
+                    gruppo.ruoli[`tester`] = testerDisponibili[i];
+                    let indice = testerDisponibili.indexOf(testerDisponibili[i])
+                    testerDisponibili.splice(indice, 1);
+                    break;
+                }
+            }
+        });
+    } 
+    /*Devo trovare un modo ulteriore per randomizzare la mescolanza nel caso di gruppi dispari*/
+    else {
+        let testerDisponibiliReverse = testerDisponibili.reverse();
+        console.log("lista reverse: ", testerDisponibiliReverse)
+        gruppi.forEach(gruppo => { 
+            gruppo.ruoli[`tester`] = testerDisponibiliReverse[0];
+            let indice = 0;
+            testerDisponibiliReverse.splice(indice, 1);
+        });
+    }
+    
+    creaTabellaShuffle(gruppi);
 }
 
 /*
@@ -213,7 +238,11 @@ Tester di altro gruppo:
 */
 function creaTabellaShuffle(tabella){
     let shuffle = document.getElementById("shuffle");
-    let allTable = "";
+    let allTable = `<div class="test">
+    <h2>Testa il prototipo!</h2>
+    <p>Per ogni persona del gruppo è stato assegnato un ruolo. <br> I <b>tester</b> nei gruppi appartengono a gruppi diversi.</p>
+    </div>
+    <div id="tabs">`;
     for(let i=0; i<tabella.length; i++){
         let tableHTML = `<div>
         <h2>${tabella[i].nome}</h2>
@@ -239,7 +268,7 @@ function creaTabellaShuffle(tabella){
     
         allTable += tableHTML;
     }
+    allTable += `</div>`
     shuffle.innerHTML = allTable;
 
 }
-
