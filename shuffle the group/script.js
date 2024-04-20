@@ -43,10 +43,14 @@ function generate() {
 
     const form = document.querySelector('form');
 
+    /*
+    Il tasto submit porta il reload automatico della pagina e per questo motivo
+    devo fare il catch dell'evento e disabilitarlo
+    */
     form.addEventListener('submit', function(event) {
       event.preventDefault();
     });
-    
+
     if (partecipanti != undefined && !isNaN(pGruppo)) {
 
         console.log("pgruppo", pGruppo)
