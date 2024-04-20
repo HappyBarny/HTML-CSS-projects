@@ -41,6 +41,12 @@ function generate() {
     let partecipanti = parseInt(document.getElementById("partecipanti").value);
     let pGruppo = parseInt(document.getElementById("pGruppo").value);
 
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+    });
+    
     if (partecipanti != undefined && !isNaN(pGruppo)) {
 
         console.log("pgruppo", pGruppo)
@@ -96,6 +102,8 @@ function generate() {
 
         /*Costruisco la tabella per visualizzare questa a schermo*/
         result.innerHTML = generaTabella(gruppi);
+    } else{
+        console.log("errore")
     }
 }
 
