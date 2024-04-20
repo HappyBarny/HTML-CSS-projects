@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 
 
@@ -14,9 +15,12 @@
         <h1>IULM TEAM BUILDER</h1>
     </header>
     <div class="form">
-        <h2>Crea velocemente i team!</h2>
+        <div class="title">
+            <h2>Crea velocemente i team!</h2>
+            <p>I gruppi già sono stati formati? <a>Clicca qui!</a></p>
+        </div>
         <form action="#">
-            <div>
+            <div class="first">
                 <label for="partecipanti">Numero partecipanti:</label>
                 <input type="number" id="partecipanti" min="6" placeholder="6" required>
             </div>
@@ -31,7 +35,7 @@
                 <textarea name="nomi" id="nomi" cols="30" rows="10" placeholder="Paolo Lucia Raffaele Daniela ecc..."></textarea>
             </div>
             
-            <input class="button" type="submit" onclick="generate()" value="Genera i gruppi!">
+            <input class="btn" type="submit" onclick="generate()" value="Genera i gruppi!">
         </form>
     </div>
 
@@ -43,6 +47,7 @@
 
     </div>
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 
 </html>

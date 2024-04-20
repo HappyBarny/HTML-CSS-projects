@@ -5,6 +5,11 @@ Può esser usata e richiamata ovunque nelle funzioni.
 */
 var gruppi = [];
 
+/*Questo è il codice che mi serve a verificare determinate azioni nel primo form.
+Regola fondamentale:
+• Il numero dei partecipanti deve essere = alla lista dei nomi dei partecipanti
+• 
+*/
 var numeroPartecipanti = undefined;
 var persone
 document.getElementById("partecipanti").addEventListener("input", function () {
