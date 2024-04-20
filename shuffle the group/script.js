@@ -5,52 +5,107 @@ Può esser usata e richiamata ovunque nelle funzioni.
 */
 var gruppi = [];
 
-function generate(){
-    let partecipanti = document.getElementById("partecipanti").value;
+var numeroPartecipanti = undefined;
+var persone
+document.getElementById("partecipanti").addEventListener("input", function () {
+    numeroPartecipanti = this.value;
+});
+
+document.getElementById("nomi").addEventListener("input", function () {
+    let maxWords = numeroPartecipanti;
+    let textarea = document.getElementById("nomi");
+
+    textarea.addEventListener("input", function () {
+        // Divido il testo della textarea in parole
+        let words = textarea.value.split(/\s+/);
+        let wordCount = words.length;
+        if (wordCount > maxWords) {
+            // Unisco le prime maxWords parole per ottenere il testo troncato
+            let truncatedText = words.slice(0, maxWords).join(" ");
+            // Imposto il testo troncato come nuovo valore della textarea
+            textarea.value = truncatedText;
+        }
+    });
+});
+
+
+/**/
+
+function generate() {
+
+    let partecipanti = parseInt(document.getElementById("partecipanti").value);
     let pGruppo = parseInt(document.getElementById("pGruppo").value);
-    let result = document.getElementById("result");
-    
-    /*Genero la mia lista dei partecipanti*/
-    let lista_partecipanti = generaPartecipanti(partecipanti);
-    
-    /*Mischio gli elementi all'interno della lista 
-    e poi spezzo questa in gruppi diversi e separati*/
-    randomizzaArray(lista_partecipanti)
-    gruppi = spezzaListaInGruppi(lista_partecipanti, pGruppo);
 
-    
-    /*Riequilibrio i gruppi nel caso in cui uno di questi è troppo piccolo rispetto agli altri*/
-    let ultimoListIndex = gruppi.length - 1;
-    let partecipantiUltimoGruppo = gruppi[ultimoListIndex].length;
+    if (partecipanti != undefined && !isNaN(pGruppo)) {
 
-    if((gruppi[0].length/2) + 1 > partecipantiUltimoGruppo){
-        alert(`l'ultimo gruppo essendo di ${partecipantiUltimoGruppo} persone verrà ridistribuito negli altri gruppi`);    
-        while(gruppi[ultimoListIndex].length > 0){
-            for(let i=0; i<gruppi.length; i++){
-                if(i!== ultimoListIndex){
-                    let persona = gruppi[ultimoListIndex].shift();
-                    if(persona === undefined){
-                        break;
+        console.log("pgruppo", pGruppo)
+        /*Nella textarea Nomi è una stringa*/
+        let nomi = document.getElementById("nomi").value;
+
+        let result = document.getElementById("result");
+
+        /*Elaboro la textarea e rendo i nomi come dei singoli valori 
+        all'interno di una lista*/
+        let listaNomi = [];
+        if (nomi != "" || nomi != " ") {
+            listaNomi = creaListaNomi(nomi)
+            console.log(listaNomi)
+        }
+
+        /*Genero la mia lista dei partecipanti*/
+        let lista_partecipanti = [];
+        if (listaNomi.length === 1) {
+            lista_partecipanti = generaPartecipanti(partecipanti);
+        } else {
+            lista_partecipanti = listaNomi;
+        }
+
+
+        /*Mischio gli elementi all'interno della lista 
+        e poi spezzo questa in gruppi diversi e separati*/
+        randomizzaArray(lista_partecipanti)
+        gruppi = spezzaListaInGruppi(lista_partecipanti, pGruppo);
+
+
+        /*Riequilibrio i gruppi nel caso in cui uno di questi è troppo piccolo rispetto agli altri*/
+        let ultimoListIndex = gruppi.length - 1;
+        let partecipantiUltimoGruppo = gruppi[ultimoListIndex].length;
+
+        if ((gruppi[0].length / 2) + 1 > partecipantiUltimoGruppo) {
+            alert(`l'ultimo gruppo essendo di ${partecipantiUltimoGruppo} persone verrà ridistribuito negli altri gruppi`);
+            while (gruppi[ultimoListIndex].length > 0) {
+                for (let i = 0; i < gruppi.length; i++) {
+                    if (i !== ultimoListIndex) {
+                        let persona = gruppi[ultimoListIndex].shift();
+                        if (persona === undefined) {
+                            break;
+                        }
+                        gruppi[i].push(persona);
                     }
-                    gruppi[i].push(persona);
                 }
             }
+            gruppi.pop();
         }
-        gruppi.pop();
-    } 
 
-    console.log(gruppi)
-    
-    /*Costruisco la tabella per visualizzare questa a schermo*/
-    result.innerHTML = generaTabella(gruppi);
+        console.log(gruppi)
+
+        /*Costruisco la tabella per visualizzare questa a schermo*/
+        result.innerHTML = generaTabella(gruppi);
+    }
 }
+
+/*Funzione che, data una stringa contenente dei nomi, mi genera una lista di nomi*/
+function creaListaNomi(nomi) {
+    return nomi.split(" ");
+}
+
 
 /*
 Funzione che, dato un input, mi genera una lista di partecipanti
 */
-function generaPartecipanti(partecipanti){
-    let lista_partecipanti=[];
-    for(i=1; i<=partecipanti; i++){
+function generaPartecipanti(partecipanti) {
+    let lista_partecipanti = [];
+    for (i = 1; i <= partecipanti; i++) {
         lista_partecipanti.push("Persona-" + i);
     }
     return lista_partecipanti;
@@ -77,8 +132,8 @@ dell'array. Questo mi permette di:
 2) Assegnare ruoli casuali all'interno dei gruppi
 */
 function randomizzaArray(array) {
-    array.sort(function() {
-      return 0.5 - Math.random();
+    array.sort(function () {
+        return 0.5 - Math.random();
     });
 }
 
@@ -95,15 +150,15 @@ function generaTabella(lista) {
     <table>`;
     let i = 0;
     // Itera attraverso ogni riga della lista
-    lista.forEach(function(riga) {
-      tabellaHTML += "<tr>";
-      // Itera attraverso ogni elemento della riga
-      tabellaHTML += "<td><p>" + "Gruppo " + i + "</p></td>";
-      riga.forEach(function(elemento) {
-        tabellaHTML += "<td>" + elemento + "</td>";
-      });
-      i++;
-      tabellaHTML += "</tr>";
+    lista.forEach(function (riga) {
+        tabellaHTML += "<tr>";
+        // Itera attraverso ogni elemento della riga
+        tabellaHTML += "<td><p>" + "Gruppo " + i + "</p></td>";
+        riga.forEach(function (elemento) {
+            tabellaHTML += "<td>" + elemento + "</td>";
+        });
+        i++;
+        tabellaHTML += "</tr>";
     });
     tabellaHTML += "</table>";
     tabellaHTML += `<button onclick="shuffle()">Time to TEST!</button>`
@@ -115,13 +170,13 @@ function generaTabella(lista) {
 Funzione che mi genera i gruppi e richiama la funzione "Struttura file"
 che mi porta ad assegnare ad ogni persona un ruolo all'interno del gruppo
 */
-function shuffle(){
+function shuffle() {
     /*Ho trovato necessario tenere una copia del gruppo il che mi permette di fare
     più volte lo shuffle mantenendo gli stessi gruppi*/
     let copiaGruppi = []
     gruppi.forEach(gruppo => {
         let lista = []
-        for(let i=0;i<gruppo.length; i++){
+        for (let i = 0; i < gruppo.length; i++) {
             lista.push(gruppo[i])
         }
         copiaGruppi.push(lista)
@@ -132,7 +187,7 @@ function shuffle(){
     In questo ciclo for assegno ad ogni persona all'interno di ogni gruppo un ruolo
     richiamando la funzione assegnaRuolo
     */
-    for(let i=0; i<copiaGruppi.length; i++){
+    for (let i = 0; i < copiaGruppi.length; i++) {
         nome = "Gruppo - " + i;
         let info = assegnaRuolo(nome, copiaGruppi[i])
         json_file.push(info)
@@ -149,10 +204,10 @@ Ogni gruppo deve avere:
 N note taker
 1 Tester
 */
-function assegnaRuolo(nome, gruppo){
+function assegnaRuolo(nome, gruppo) {
     var json_group = {
         "nome": [],
-        "partecipanti":[],
+        "partecipanti": [],
 
         "ruoli": {
             "interviewer": [],
@@ -162,8 +217,8 @@ function assegnaRuolo(nome, gruppo){
     };
 
     json_group.nome = nome;
-    
-    for(let i=0; i<gruppo.length; i++){
+
+    for (let i = 0; i < gruppo.length; i++) {
         json_group.partecipanti.push(gruppo[i]);
     }
 
@@ -172,7 +227,7 @@ function assegnaRuolo(nome, gruppo){
     partecipanti = gruppo;
     json_group.ruoli.interviewer.push(partecipanti.shift()); // Assegna un intervistatore
     json_group.ruoli["tester"].push(partecipanti.pop()); // Assegna un tester
-    
+
     // Assegna i note taker
     while (partecipanti.length > 0) {
         json_group.ruoli["note taker"].push(partecipanti.pop());
@@ -197,7 +252,7 @@ Controllo sempre che il tester inserito non fa parte
 del suo gruppo di appartenenza.
 */
 
-function shuffleTheTester(json_file){
+function shuffleTheTester(json_file) {
     let testerDisponibili = [];
     let gruppi = json_file;
 
@@ -205,15 +260,15 @@ function shuffleTheTester(json_file){
         testerDisponibili = testerDisponibili.concat(gruppo.ruoli['tester']);
     });
 
-    console.log("tester disponibili: " , testerDisponibili)
+    console.log("tester disponibili: ", testerDisponibili)
 
-    
+
     /*Per numeri di gruppi pari o dispari non si può applicare lo stesso algoritmo*/
-    if(gruppi.length % 2 == 0){
+    if (gruppi.length % 2 == 0) {
         randomizzaArray(testerDisponibili);
         gruppi.forEach(gruppo => {
-            for(let i=0; i<testerDisponibili.length; i++){
-                if(gruppo.ruoli[`tester`] != testerDisponibili[i]){
+            for (let i = 0; i < testerDisponibili.length; i++) {
+                if (gruppo.ruoli[`tester`] != testerDisponibili[i]) {
                     gruppo.ruoli[`tester`] = testerDisponibili[i];
                     let indice = testerDisponibili.indexOf(testerDisponibili[i])
                     testerDisponibili.splice(indice, 1);
@@ -221,18 +276,18 @@ function shuffleTheTester(json_file){
                 }
             }
         });
-    } 
+    }
     /*Devo trovare un modo ulteriore per randomizzare la mescolanza nel caso di gruppi dispari*/
     else {
         let testerDisponibiliReverse = testerDisponibili.reverse();
         console.log("lista reverse: ", testerDisponibiliReverse)
-        gruppi.forEach(gruppo => { 
+        gruppi.forEach(gruppo => {
             gruppo.ruoli[`tester`] = testerDisponibiliReverse[0];
             let indice = 0;
             testerDisponibiliReverse.splice(indice, 1);
         });
     }
-    
+
     creaTabellaShuffle(gruppi);
     return json_file
 }
@@ -244,7 +299,7 @@ Interviewer
 Note Taker
 Tester di altro gruppo:
 */
-function creaTabellaShuffle(tabella){
+function creaTabellaShuffle(tabella) {
     let shuffle = document.getElementById("shuffle");
     let allTable = `<div class="test">
     <h2>Testa il prototipo!</h2>
@@ -252,7 +307,7 @@ function creaTabellaShuffle(tabella){
     <button onclick="shuffle()">Rimescola i ruoli!</button>
     </div>
     <div id="tabs">`;
-    for(let i=0; i<tabella.length; i++){
+    for (let i = 0; i < tabella.length; i++) {
         let tableHTML = `<div>
         <h2>${tabella[i].nome}</h2>
         <table>
@@ -274,7 +329,7 @@ function creaTabellaShuffle(tabella){
            </tr>
         </table>
         </div>`;
-    
+
         allTable += tableHTML;
     }
     allTable += `</div>`

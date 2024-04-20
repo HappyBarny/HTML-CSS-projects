@@ -15,13 +15,24 @@
     </header>
     <div class="form">
         <h2>Crea velocemente i team!</h2>
-        <label for="partecipanti">Numero partecipanti:</label>
-        <input type="number" id="partecipanti" min="6" placeholder="6" required>
-
-        <label for="pGruppo">Persone per gruppo:</label>
-        <input type="number" id="pGruppo" min="3" placeholder="3" required>
-
-        <button onclick="generate()">Genera i gruppi!</button>
+        <form action="#">
+            <div>
+                <label for="partecipanti">Numero partecipanti:</label>
+                <input type="number" id="partecipanti" min="6" placeholder="6" required>
+            </div>
+            
+            <div>
+                <label for="pGruppo">Persone per gruppo:</label>
+                <input type="number" id="pGruppo" min="3" placeholder="3" required>
+            </div>
+    
+            <div class="area3">
+                <label for="nomi">Nomi dei partecipanti: </label>
+                <textarea name="nomi" id="nomi" cols="30" rows="10" placeholder="Paolo Lucia Raffaele Daniela ecc..."></textarea>
+            </div>
+            
+            <input class="button" type="submit" onclick="generate()" value="Genera i gruppi!">
+        </form>
     </div>
 
     <div id="result">
