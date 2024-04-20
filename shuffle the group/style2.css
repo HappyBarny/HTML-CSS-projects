@@ -1,0 +1,23 @@
+body{
+    font-family: sans-serif;
+    margin: auto;
+}
+
+header{
+    background-color: #312682;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    h1{
+        margin: 0;
+        font-size: 3em;
+        background-color: #312682;
+        color: white;
+        text-align: center;
+    }
+}   
+
+
+h2{
+    font-weight: bold;
+    line-height: 1.2em;
+}
