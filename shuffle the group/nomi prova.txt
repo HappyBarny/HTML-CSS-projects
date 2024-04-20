@@ -1,1 +1,14 @@
+Copia e incolla i seguenti nomi nel box:
+
+Caso 1:
+partecipanti 
+6
+nomi:
+paolo lorenzo nicolò simone anna elisa 
+
+Caso 2:
+partecipanti 
+12
+nomi:
 paolo lorenzo nicolò simone anna elisa gaia stefano jacopo antonella greta raffaele
+
