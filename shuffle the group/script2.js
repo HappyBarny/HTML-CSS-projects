@@ -64,7 +64,7 @@ function EvidenziaPartecipanti(e) {
     var riga = e.target.closest("tr");
     var cellePartecipanti = riga.querySelectorAll("td:nth-child(1), td:nth-child(2)");
     cellePartecipanti.forEach(function (cella) {
-        cella.style.backgroundColor = "#E6E6FA"; // Evidenzia in giallo
+        cella.style.backgroundColor = "#E6E6FA";
         cella.style.border = "2px solid black"
     });
 
