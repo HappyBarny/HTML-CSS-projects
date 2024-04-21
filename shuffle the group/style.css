@@ -195,7 +195,7 @@ button{
     cursor: pointer;
     font-weight: bolder;
     width: fit-content;
-    border-radius: 15px;
+    border-radius: 7px;
     margin-top: 5px;
     padding: 5px 10px 5px 10px;
 }
