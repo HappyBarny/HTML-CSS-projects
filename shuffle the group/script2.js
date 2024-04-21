@@ -21,7 +21,14 @@ function AggiungiGruppo(e) {
         </tr>
     `;
 
+    // Resetta i dati presenti all'interno del form
     form.reset();
+
+    // Mostra la tabella se e solo se si è premuto "submit"
+    tableElement.style.display = "table";
+
+    // Controllo il numero di gruppi
+    abilitaPulsante();
 }
 
 function EliminaRiga(e) {
@@ -30,6 +37,8 @@ function EliminaRiga(e) {
     }
     let btn = e.target;
     btn.closest("tr").remove();
+    // Controllo che il numero di gruppi sia maggiore o uguale a 2
+    abilitaPulsante();
 }
 
 function ModificaContenuto(e) {
@@ -77,6 +86,35 @@ document.addEventListener("click", function (e) {
     }
 });
 
+
+function abilitaPulsante() {
+    var righe = document.querySelectorAll("#tabella tbody tr");
+    var pulsante = document.querySelector(".button1");
+    if (righe.length >= 2) {
+        pulsante.style.display = "block";
+    } else {
+        pulsante.style.display = "none";
+    }
+}
+
+
+function raggruppaDati() {
+    var righe = document.querySelectorAll("#tabella tbody tr");
+    var datiMatrice = [];
+    righe.forEach(function (riga) {
+        var celle = riga.querySelectorAll("td");
+        var datiRiga = [];
+        celle.forEach(function (cella) {
+            if(cella.textContent.trim() !== ''){
+                datiRiga.push(cella.textContent.trim());
+            }
+        });
+        datiMatrice.push(datiRiga);
+    });
+    console.log(datiMatrice);
+}
+
+
 form.addEventListener("submit", AggiungiGruppo);
 tableElement.addEventListener("click", EliminaRiga);
 tableElement.addEventListener("dblclick", ModificaContenuto);
@@ -85,3 +123,14 @@ tableElement.addEventListener("click", function (e) {
         EvidenziaPartecipanti(e);
     }
 });
+
+
+
+
+/*SCRIPT.JS RIGA 206-210 → Genera il nome del gruppo e poi passa una matrice di dati 
+[[paolo, luca, lucia][elisa, anna, Lorenzo]]*/
+
+
+
+
+

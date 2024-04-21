@@ -63,8 +63,7 @@ function generate() {
         all'interno di una lista*/
         let listaNomi = [];
         if (nomi != "" || nomi != " ") {
-            listaNomi = creaListaNomi(nomi)
-            console.log(listaNomi)
+            listaNomi = creaListaNomi(nomi);
         }
 
         /*Genero la mia lista dei partecipanti*/
@@ -102,7 +101,7 @@ function generate() {
             gruppi.pop();
         }
 
-        console.log(gruppi)
+        console.log("Gruppi: " , gruppi)
 
         /*Costruisco la tabella per visualizzare questa a schermo*/
         result.innerHTML = generaTabella(gruppi);

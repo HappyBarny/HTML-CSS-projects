@@ -14,6 +14,7 @@ header{
         background-color: #312682;
         color: white;
         text-align: center;
+        font-weight: bold;
     }
 }   
 
@@ -41,6 +42,7 @@ h2{
     label{
         margin-bottom: 5px;
         margin-right: 20px;
+        width: fit-content;
     }
     input{
         width: 170px;
