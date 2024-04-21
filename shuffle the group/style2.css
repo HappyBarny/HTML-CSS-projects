@@ -25,6 +25,19 @@ h2{
 .title{
     margin-top: 50px;
     margin-left: 35px;
+
+    a{
+        font-size: 0.8em;
+        color: #312682;
+    }
+    .rotated{
+        transform: rotate(180deg);
+        margin-right: 10px;
+    }
+    h2{
+        margin-top: 12px;
+        font-size: 2.3em;
+    }
 }
 
 .row{
@@ -38,7 +51,7 @@ h2{
 }
 
 .first-tab{
-    width: 1000px;
+    width: 700px;
     margin-left: 25px;   
 }
 .btn{
