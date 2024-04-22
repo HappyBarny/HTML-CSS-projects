@@ -31,6 +31,7 @@ document.getElementById("nomi").addEventListener("input", function () {
             textarea.value = truncatedText;
         }
     });
+    console.log(textarea)
 });
 
 
