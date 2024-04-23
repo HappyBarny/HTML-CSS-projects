@@ -1,0 +1,59 @@
+NEXT UPDATE:
+Saranno implementate nuove feature per migliorare l'esperienza utente.
+Prevista patch su page2.html pulsante modifica.
+---------------------------------------------------------------------------------------------------------------------------
+UPDATE AL 22/04/2024 ore 21:10
+L'applicazione è entrata nella fase finale in cui procederò a una serie di operazioni inerenti al Bug Fixing.
+Di per sè il Main Core dell'applicazione funziona ed è stato ampliamente testato più volte.
+
+La pagina inixiale è rappresentata dalla pagina index.html.
+
+###
+ABOUT → INDEX.HTML
+Index.html richiede come dati obbligatori: 
+1) numero di partecipanti
+2) persone per gruppo
+
+Questo perchè è possibile testare fin da subito il funzionamento della web app.
+La webapp procederà a costruire personaggi fittizzi. Potrai verificare così il giusto e corretto funzionamento dell'applicativo.
+
+NOTA:
+Se vi è uno squilibrio nei gruppi questi vengono riequilibrati.
+Esempio:
+1) Numero partecipanti 13
+2) persone per gruppo 3
+
+L'applicativo non creerà mai un gruppo di una sola persona ma distribuirà questa in un altro gruppo.
+
+Vuoi aggiungere nomi personalizzati?
+Puoi aggiungere questi dati nella text area alla voce "Nomi dei partecipanti".
+Per praticità copia e incolla i seguenti nomi nel box:
+Caso 1:
+partecipanti 
+6
+nomi:
+paolo lorenzo nicolò simone anna elisa 
+
+Caso 2:
+partecipanti 
+12
+nomi:
+paolo lorenzo nicolò simone anna elisa gaia stefano jacopo antonella greta raffaele
+
+###
+ABOUT → PAGE2.HTML
+1) NOME GRUPPO → scrivi il nome del gruppo (esempio: SEUL)
+2) NOMI PARTECIPANTI → scrivi il nome dei partecipanti (esempio: Paolo Alessio Sara Elisa)
+
+una volta compilati i campi clicca su inserisci gruppo.
+Fai questa operazione con tutti i gruppi che desideri aggiungere.
+
+La tabella è possibile modificarla modificando gli elementi nelle singole celle (puoi farlo sia cliccando sulla matita che facendo double click con il mouse sulla casella) o è possibile anche cancellare i gruppi.
+Una volta raggiunti i 2 gruppi comparirà un pulsante su cui sarà possibile cliccare su "TIME TO TEST".
+
+Modificando la tabella, eliminando le celle o altro sarà possibile aggiornare le tabelle TEST cliccando nuovamente il pulsante "TIME TO TEST".
+
+###
+PAGINA 404 è lì semplicemente come placeholder
+
+
